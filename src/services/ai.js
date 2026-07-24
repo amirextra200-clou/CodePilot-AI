@@ -5,7 +5,7 @@ export async function askAI(question) {
 
 
         const response = await fetch(
-            "http://localhost:5000/ask",
+            "/api/ask",
             {
 
                 method: "POST",
