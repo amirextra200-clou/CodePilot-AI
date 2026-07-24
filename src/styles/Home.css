@@ -1,0 +1,260 @@
+.home{
+
+    padding:35px;
+
+}
+
+
+/* Hero Section */
+
+.hero{
+
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+
+    color:white;
+
+    padding:50px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+}
+
+
+.hero h1{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+}
+
+
+.hero p{
+
+    font-size:20px;
+
+    color:#dbeafe;
+
+}
+
+
+/* Hero Buttons */
+
+.hero-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+
+.hero-buttons a{
+
+    text-decoration:none;
+
+}
+
+
+.hero-buttons button{
+
+    background:white;
+
+    color:#2563eb;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+}
+
+
+.hero-buttons button:hover{
+
+    background:#dbeafe;
+
+}
+
+
+/* Tools Section */
+
+.tools-section{
+
+    margin-top:45px;
+
+}
+
+
+.tools-section h2{
+
+    font-size:30px;
+
+    color:#0f172a;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* Cards Grid */
+
+.tools-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+/* Tool Card */
+
+.tool-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    color:#0f172a;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+
+}
+
+
+
+.tool-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
+
+}
+
+
+.tool-card h3{
+
+    font-size:22px;
+
+    margin-bottom:12px;
+
+}
+
+
+.tool-card p{
+
+    color:#475569;
+
+    line-height:1.5;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:900px){
+
+
+    .tools-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+    .home{
+
+        padding:20px;
+
+    }
+
+
+    .hero{
+
+        padding:30px;
+
+    }
+
+
+    .hero h1{
+
+        font-size:32px;
+
+    }
+
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+    .tools-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+
+
+.tool-icon{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+}
+
+
+.tool-card span{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    color:#2563eb;
+
+    font-weight:bold;
+
+}
+
+
+.tool-card:hover span{
+
+    color:#1d4ed8;
+
+}
