@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../styles/Sidebar.css";
 
 
@@ -14,34 +14,34 @@ function Sidebar(){
             </h2>
 
 
-            <Link to="/explain">
+            <NavLink to="/explain">
                 📝 Code Explain
-            </Link>
+            </NavLink>
 
 
-            <Link to="/debugger">
+            <NavLink to="/debugger">
                 🐞 Debugger
-            </Link>
+            </NavLink>
 
 
-            <Link to="/generator">
+            <NavLink to="/generator">
                 ⚡ Code Generator
-            </Link>
+            </NavLink>
 
 
-            <Link to="/ideas">
+            <NavLink to="/ideas">
                 💡 Ideas
-            </Link>
+            </NavLink>
 
 
-            <Link to="/errors">
+            <NavLink to="/errors">
                 ❌ Errors
-            </Link>
+            </NavLink>
 
 
-            <Link to="/history">
+            <NavLink to="/history">
                 📜 History
-            </Link>
+            </NavLink>
 
 
 
@@ -51,19 +51,19 @@ function Sidebar(){
 
 
 
-            <Link to="/learning">
+            <NavLink to="/learning">
                 🌐 HTML / CSS / JavaScript
-            </Link>
+            </NavLink>
 
 
-            <Link to="/learning">
+            <NavLink to="/learning">
                 ⚛ React
-            </Link>
+            </NavLink>
 
 
-            <Link to="/learning">
+            <NavLink to="/learning">
                 🐘 PHP
-            </Link>
+            </NavLink>
 
 
         </aside>
