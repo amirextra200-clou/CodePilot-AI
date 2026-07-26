@@ -1,5 +1,9 @@
 .loading{
 
+    margin-top:35px;
+
+    padding:40px;
+
     display:flex;
 
     flex-direction:column;
@@ -8,22 +12,34 @@
 
     align-items:center;
 
-    padding:35px;
+    text-align:center;
 
-    margin-top:20px;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+
+    border-radius:20px;
+
+    border:1px solid #334155;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    animation:fadeIn .4s ease;
 
 }
 
 
+/* Spinner */
+
 .spinner{
 
-    width:60px;
+    width:75px;
 
-    height:60px;
+    height:75px;
 
-    border:6px solid #334155;
+    border:6px solid rgba(255,255,255,.15);
 
     border-top:6px solid #38bdf8;
+
+    border-right:6px solid #60a5fa;
 
     border-radius:50%;
 
@@ -32,21 +48,50 @@
 }
 
 
+/* AI Title */
+
 .loading h3{
+
+    margin-top:25px;
+
+    font-size:26px;
 
     color:#38bdf8;
 
-    margin-top:20px;
+    font-weight:700;
 
 }
 
+
+/* Description */
 
 .loading p{
 
-    color:#94a3b8;
+    margin-top:10px;
+
+    color:#cbd5e1;
+
+    font-size:16px;
+
+    max-width:450px;
+
+    line-height:1.7;
 
 }
 
+
+/* Animated Dots */
+
+.loading p::after{
+
+    content:"";
+
+    animation:dots 1.5s infinite;
+
+}
+
+
+/* Spinner */
 
 @keyframes spin{
 
@@ -59,6 +104,503 @@
     to{
 
         transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* Fade */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* Thinking Dots */
+
+@keyframes dots{
+
+    0%{
+
+        content:"";
+
+    }
+
+    25%{
+
+        content:".";
+
+    }
+
+    50%{
+
+        content:"..";
+
+    }
+
+    75%{
+
+        content:"...";
+
+    }
+
+    100%{
+
+        content:"";
+
+    }
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .loading{
+
+        padding:30px 20px;
+
+    }
+
+    .spinner{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .loading h3{
+
+        font-size:22px;
+
+    }
+
+    .loading p{
+
+        font-size:15px;
+
+    }
+
+}.loading{
+
+    margin-top:35px;
+
+    padding:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+
+    border-radius:20px;
+
+    border:1px solid #334155;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    animation:fadeIn .4s ease;
+
+}
+
+
+/* Spinner */
+
+.spinner{
+
+    width:75px;
+
+    height:75px;
+
+    border:6px solid rgba(255,255,255,.15);
+
+    border-top:6px solid #38bdf8;
+
+    border-right:6px solid #60a5fa;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+
+/* AI Title */
+
+.loading h3{
+
+    margin-top:25px;
+
+    font-size:26px;
+
+    color:#38bdf8;
+
+    font-weight:700;
+
+}
+
+
+/* Description */
+
+.loading p{
+
+    margin-top:10px;
+
+    color:#cbd5e1;
+
+    font-size:16px;
+
+    max-width:450px;
+
+    line-height:1.7;
+
+}
+
+
+/* Animated Dots */
+
+.loading p::after{
+
+    content:"";
+
+    animation:dots 1.5s infinite;
+
+}
+
+
+/* Spinner */
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* Fade */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* Thinking Dots */
+
+@keyframes dots{
+
+    0%{
+
+        content:"";
+
+    }
+
+    25%{
+
+        content:".";
+
+    }
+
+    50%{
+
+        content:"..";
+
+    }
+
+    75%{
+
+        content:"...";
+
+    }
+
+    100%{
+
+        content:"";
+
+    }
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .loading{
+
+        padding:30px 20px;
+
+    }
+
+    .spinner{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .loading h3{
+
+        font-size:22px;
+
+    }
+
+    .loading p{
+
+        font-size:15px;
+
+    }
+
+}.loading{
+
+    margin-top:35px;
+
+    padding:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+
+    border-radius:20px;
+
+    border:1px solid #334155;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    animation:fadeIn .4s ease;
+
+}
+
+
+/* Spinner */
+
+.spinner{
+
+    width:75px;
+
+    height:75px;
+
+    border:6px solid rgba(255,255,255,.15);
+
+    border-top:6px solid #38bdf8;
+
+    border-right:6px solid #60a5fa;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+
+/* AI Title */
+
+.loading h3{
+
+    margin-top:25px;
+
+    font-size:26px;
+
+    color:#38bdf8;
+
+    font-weight:700;
+
+}
+
+
+/* Description */
+
+.loading p{
+
+    margin-top:10px;
+
+    color:#cbd5e1;
+
+    font-size:16px;
+
+    max-width:450px;
+
+    line-height:1.7;
+
+}
+
+
+/* Animated Dots */
+
+.loading p::after{
+
+    content:"";
+
+    animation:dots 1.5s infinite;
+
+}
+
+
+/* Spinner */
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* Fade */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* Thinking Dots */
+
+@keyframes dots{
+
+    0%{
+
+        content:"";
+
+    }
+
+    25%{
+
+        content:".";
+
+    }
+
+    50%{
+
+        content:"..";
+
+    }
+
+    75%{
+
+        content:"...";
+
+    }
+
+    100%{
+
+        content:"";
+
+    }
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .loading{
+
+        padding:30px 20px;
+
+    }
+
+    .spinner{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .loading h3{
+
+        font-size:22px;
+
+    }
+
+    .loading p{
+
+        font-size:15px;
 
     }
 
