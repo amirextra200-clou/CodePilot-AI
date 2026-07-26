@@ -2,7 +2,12 @@ body{
 
     margin:0;
 
-    background:#f8fafc;
+    background:
+    linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef2ff
+    );
 
     font-family:
     Inter, Arial, Helvetica, sans-serif;
@@ -15,11 +20,37 @@ body{
 
 .page{
 
-    padding:35px;
+    padding:40px;
 
     max-width:1200px;
 
     margin:auto;
+
+    animation:fadeIn .5s ease;
+
+}
+
+
+
+/* Animation */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 
 }
 
@@ -29,7 +60,9 @@ body{
 
 .page h1{
 
-    font-size:36px;
+    font-size:42px;
+
+    font-weight:800;
 
     color:#0f172a;
 
@@ -39,17 +72,15 @@ body{
 
 
 
-.page p{
+.page > p{
 
     font-size:18px;
 
     color:#475569;
 
-    line-height:1.6;
+    line-height:1.7;
 
 }
-
-
 
 
 
@@ -61,16 +92,17 @@ body{
 
     background:white;
 
-    padding:30px;
+    padding:32px;
 
-    border-radius:18px;
+    border-radius:22px;
 
     border:1px solid #e2e8f0;
 
     box-shadow:
-    0 10px 30px rgba(15,23,42,0.08);
+    0 10px 30px rgba(15,23,42,.08);
 
-    transition:.3s ease;
+    transition:
+    all .3s ease;
 
 }
 
@@ -78,18 +110,129 @@ body{
 
 .card:hover{
 
-    transform:translateY(-4px);
+    transform:translateY(-6px);
+
+    border-color:#93c5fd;
 
     box-shadow:
-    0 15px 35px rgba(15,23,42,0.12);
+    0 20px 45px rgba(37,99,235,.15);
 
 }
 
 
 
+/* Project Card */
+
+
+.project-card{
+
+    margin-top:30px;
+
+    background:white;
+
+    padding:32px;
+
+    border-radius:24px;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow:
+    0 12px 35px rgba(15,23,42,.08);
+
+    transition:
+    all .35s ease;
+
+}
+
+
+
+.project-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#60a5fa;
+
+    box-shadow:
+    0 25px 50px rgba(37,99,235,.18);
+
+}
+
+
+
+/* Project Title */
+
+.project-card h2{
+
+    color:#0f172a;
+
+    font-size:26px;
+
+    margin-bottom:12px;
+
+}
+
+
+
+/* Project Description */
+
+.project-card p{
+
+    color:#475569;
+
+    font-size:17px;
+
+}
+
+
+
+/* Status Badge */
+
+
+.project-status{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+    font-weight:700;
+
+}
+
+
+
+/* Project Buttons */
+
+
+.project-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.project-buttons a{
+
+    text-decoration:none;
+
+}
+
 
 
 /* Text Area */
+
 
 textarea{
 
@@ -101,9 +244,11 @@ textarea{
 
     padding:18px;
 
-    border:1px solid #cbd5e1;
+    border:
 
-    border-radius:12px;
+    1px solid #cbd5e1;
+
+    border-radius:15px;
 
     outline:none;
 
@@ -113,9 +258,9 @@ textarea{
 
     resize:vertical;
 
-    transition:.3s;
+    background:white;
 
-    background:#ffffff;
+    transition:.3s;
 
 }
 
@@ -126,15 +271,14 @@ textarea:focus{
     border-color:#2563eb;
 
     box-shadow:
-    0 0 12px rgba(37,99,235,.25);
+    0 0 15px rgba(37,99,235,.25);
 
 }
 
 
 
-
-
 /* Buttons */
+
 
 button{
 
@@ -150,11 +294,11 @@ button{
 
     margin-right:12px;
 
-    padding:13px 28px;
+    padding:14px 30px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
     background:#0f172a;
 
@@ -164,7 +308,7 @@ button{
 
     font-size:16px;
 
-    font-weight:600;
+    font-weight:700;
 
     transition:.3s;
 
@@ -176,15 +320,17 @@ button:hover{
 
     background:#2563eb;
 
-    transform:translateY(-2px);
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 10px 20px rgba(37,99,235,.25);
 
 }
 
 
 
-
-
-/* Disabled Button */
+/* Disabled */
 
 button:disabled{
 
@@ -198,9 +344,18 @@ button:disabled{
 
 
 
+/* Code blocks */
+
+code{
+
+    font-family:monospace;
+
+}
+
 
 
 /* Mobile */
+
 
 @media(max-width:768px){
 
@@ -212,13 +367,11 @@ button:disabled{
     }
 
 
-
     .page h1{
 
-        font-size:28px;
+        font-size:30px;
 
     }
-
 
 
     .page p{
@@ -228,21 +381,20 @@ button:disabled{
     }
 
 
+    .card,
 
-    .card{
+    .project-card{
 
-        padding:20px;
-
-    }
-
-
-
-    textarea{
-
-        min-height:180px;
+        padding:22px;
 
     }
 
+
+    .project-buttons{
+
+        flex-direction:column;
+
+    }
 
 
     button{
@@ -253,5 +405,86 @@ button:disabled{
 
     }
 
+
+    textarea{
+
+        min-height:180px;
+
+    }
+
+}
+
+/* Tech Stack */
+
+.tech-stack{
+
+    margin-top:25px;
+
+}
+
+
+
+.tech-stack h4{
+
+    color:#0f172a;
+
+    font-size:18px;
+
+    margin-bottom:12px;
+
+}
+
+
+
+/* Tech Badge Container */
+
+.tech-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+
+
+/* Individual Badge */
+
+.tech-list span{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:25px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    border:1px solid #bfdbfe;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.3s ease;
+
+}
+
+
+
+.tech-list span:hover{
+
+    background:#2563eb;
+
+    color:white;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 8px 18px rgba(37,99,235,.25);
 
 }

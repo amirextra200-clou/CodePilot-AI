@@ -1,82 +1,238 @@
 import "../styles/Page.css";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Rocket01Icon } from "@hugeicons/core-free-icons";
-
-function Ideas() {
 
 
-    const ideas = [
+function Projects() {
+
+
+    const projects = [
+
 
         {
+
             title: "🤖 AI Study Helper",
-            description: "Create an AI tool that helps students learn."
+
+            description:
+            "AI-powered learning platform for students. Generate notes, quizzes, study plans and AI explanations.",
+
+            status: "🟢 Live",
+
+            tech:[
+                "⚛ React",
+                "🟨 JavaScript",
+                "🤖 Groq AI",
+                "▲ Vercel"
+            ],
+
+            live: "https://YOUR-AI-STUDY-HELPER.vercel.app",
+
+            github: "https://github.com/YOUR_USERNAME/AI-STUDY-HELPER"
+
         },
 
 
+
         {
-            title: "🌦 Weather App",
-            description: "Build an app that shows weather information."
+
+            title: "🤖 CodePilot AI",
+
+            description:
+            "AI assistant for programmers. Explain code, debug errors, generate code and help students learn programming.",
+
+            status: "🟢 Live",
+
+            tech:[
+                "⚛ React",
+                "🟨 JavaScript",
+                "🤖 Groq AI",
+                "▲ Vercel"
+            ],
+
+            live:"https://code-pilot-ai-orpin.vercel.app",
+
+            github:"https://github.com/amirextra200-clou/CodePilot-AI"
+
         },
 
 
+
         {
-            title: "💼 Portfolio Website",
-            description: "Create a personal developer portfolio."
+
+            title:"🌦 Weather App",
+
+            description:
+            "Modern weather application with live forecast and beautiful user interface.",
+
+            status:"🚧 Coming Soon",
+
+            tech:[
+                "⚛ React",
+                "🌐 Weather API",
+                "🎨 CSS"
+            ],
+
+            live:"#",
+
+            github:"#"
+
         },
 
 
-        {
-            title: "💬 Chat Application",
-            description: "Build a real-time messaging application."
-        },
-
 
         {
-            title: "🛒 E-commerce Website",
-            description: "Create an online shopping platform."
+
+            title:"👨‍💻 Portfolio Website",
+
+            description:
+            "Professional developer portfolio showcasing projects, skills and achievements.",
+
+            status:"🚧 Coming Soon",
+
+            tech:[
+                "⚛ React",
+                "🟨 JavaScript",
+                "🎨 CSS"
+            ],
+
+            live:"#",
+
+            github:"#"
+
         }
+
 
     ];
 
 
 
-    return (
+
+    return(
+
 
         <div className="page">
 
 
             <h1>
-                💡 Programming Ideas
+                🚀 My Projects
             </h1>
 
 
+
             <p>
-                Find creative project ideas and build amazing applications.
+                Explore my projects, live demos, technologies and source code.
             </p>
+
 
 
 
             {
 
-                ideas.map((idea, index) => (
+                projects.map((project,index)=>(
 
 
-                    <div className="card" key={index}>
+                    <div
+                    className="project-card"
+                    key={index}
+                    >
+
 
 
                         <h2>
-                            {idea.title}
+                            {project.title}
                         </h2>
 
 
+
+
                         <p>
-                            {idea.description}
+                            {project.description}
                         </p>
 
 
-                        <button>
-                            Start Building <HugeiconsIcon icon={Rocket01Icon} size={32} color="currentColor" strokeWidth={1.5} />
-                        </button>
+
+
+                        <div className="project-status">
+
+                            {project.status}
+
+                        </div>
+
+
+
+
+
+                        <div className="tech-stack">
+
+
+                            <h4>
+                                Built With:
+                            </h4>
+
+
+
+                            <div className="tech-list">
+
+
+                                {
+
+                                    project.tech.map((item,index)=>(
+
+                                        <span key={index}>
+                                            {item}
+                                        </span>
+
+                                    ))
+
+                                }
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+                        <div className="project-buttons">
+
+
+
+                            <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noreferrer"
+                            >
+
+                                <button>
+                                    🌐 Live Demo
+                                </button>
+
+                            </a>
+
+
+
+
+
+                            <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            >
+
+                                <button>
+                                    💻 GitHub
+                                </button>
+
+                            </a>
+
+
+
+
+                        </div>
+
+
 
                     </div>
 
@@ -89,9 +245,12 @@ function Ideas() {
 
         </div>
 
+
     )
+
 
 }
 
 
-export default Ideas;
+
+export default Projects;
