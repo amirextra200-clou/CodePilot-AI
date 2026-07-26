@@ -9,7 +9,7 @@ import ExplainCode from "./pages/ExplainCode";
 import Debugger from "./pages/Debugger";
 import CodeGenerator from "./pages/CodeGenerator";
 import Learning from "./pages/Learning";
-import Ideas from "./pages/Ideas";
+import Projects from "./pages/Projects";
 import Errors from "./pages/Errors";
 import HistoryPage from "./pages/HistoryPage";
 import Dashboard from "./pages/Dashboard";
@@ -72,8 +72,8 @@ function App() {
 
 
                         <Route
-                            path="/ideas"
-                            element={<Ideas />}
+                            path="/Projects"
+                            element={<Projects />}
                         />
 
 

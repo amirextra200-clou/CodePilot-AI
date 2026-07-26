@@ -16,16 +16,22 @@ function Projects() {
 
             status: "🟢 Live",
 
+            category: "AI Education Platform",
+
+            level: "Advanced",
+
             tech:[
                 "⚛ React",
                 "🟨 JavaScript",
-                "🤖 Groq AI",
+                "🤖 AI",
                 "▲ Vercel"
             ],
 
             live: "https://YOUR-AI-STUDY-HELPER.vercel.app",
 
-            github: "https://github.com/YOUR_USERNAME/AI-STUDY-HELPER"
+            github: "https://github.com/YOUR_USERNAME/AI-STUDY-HELPER",
+
+            completed:true
 
         },
 
@@ -40,6 +46,10 @@ function Projects() {
 
             status: "🟢 Live",
 
+            category: "AI Developer Tool",
+
+            level: "Advanced",
+
             tech:[
                 "⚛ React",
                 "🟨 JavaScript",
@@ -49,7 +59,9 @@ function Projects() {
 
             live:"https://code-pilot-ai-orpin.vercel.app",
 
-            github:"https://github.com/amirextra200-clou/CodePilot-AI"
+            github:"https://github.com/amirextra200-clou/CodePilot-AI",
+
+            completed:true
 
         },
 
@@ -60,9 +72,13 @@ function Projects() {
             title:"🌦 Weather App",
 
             description:
-            "Modern weather application with live forecast and beautiful user interface.",
+            "Modern weather application with live forecast, location search and beautiful interface.",
 
             status:"🚧 Coming Soon",
+
+            category:"Web Application",
+
+            level:"Intermediate",
 
             tech:[
                 "⚛ React",
@@ -70,9 +86,7 @@ function Projects() {
                 "🎨 CSS"
             ],
 
-            live:"#",
-
-            github:"#"
+            completed:false
 
         },
 
@@ -87,20 +101,48 @@ function Projects() {
 
             status:"🚧 Coming Soon",
 
+            category:"Personal Branding",
+
+            level:"Intermediate",
+
             tech:[
                 "⚛ React",
                 "🟨 JavaScript",
                 "🎨 CSS"
             ],
 
-            live:"#",
+            completed:false
 
-            github:"#"
+        },
+
+
+
+        {
+
+            title:"💬 Chat Application",
+
+            description:
+            "Real-time messaging application with modern UI and communication features.",
+
+            status:"🚧 Coming Soon",
+
+            category:"Full Stack App",
+
+            level:"Advanced",
+
+            tech:[
+                "⚛ React",
+                "🔥 Firebase",
+                "🟨 JavaScript"
+            ],
+
+            completed:false
 
         }
 
 
     ];
+
 
 
 
@@ -118,8 +160,9 @@ function Projects() {
 
 
             <p>
-                Explore my projects, live demos, technologies and source code.
+                Explore my projects, technologies and development journey.
             </p>
+
 
 
 
@@ -133,6 +176,7 @@ function Projects() {
                     className="project-card"
                     key={index}
                     >
+
 
 
 
@@ -160,12 +204,37 @@ function Projects() {
 
 
 
+                        <div className="project-info">
+
+
+                            <p>
+                                📂 Category:
+                                <b> {project.category}</b>
+                            </p>
+
+
+
+                            <p>
+                                📈 Level:
+                                <b> {project.level}</b>
+                            </p>
+
+
+
+                        </div>
+
+
+
+
+
+
                         <div className="tech-stack">
 
 
                             <h4>
                                 Built With:
                             </h4>
+
 
 
 
@@ -185,7 +254,9 @@ function Projects() {
                                 }
 
 
+
                             </div>
+
 
 
                         </div>
@@ -195,8 +266,17 @@ function Projects() {
 
 
 
+
                         <div className="project-buttons">
 
+
+
+                            {
+
+                            project.completed ?
+
+
+                            <>
 
 
                             <a
@@ -208,6 +288,7 @@ function Projects() {
                                 <button>
                                     🌐 Live Demo
                                 </button>
+
 
                             </a>
 
@@ -225,12 +306,30 @@ function Projects() {
                                     💻 GitHub
                                 </button>
 
+
                             </a>
 
+
+                            </>
+
+
+
+                            :
+
+
+                            <button disabled>
+
+                                🚧 In Development
+
+                            </button>
+
+
+                            }
 
 
 
                         </div>
+
 
 
 
@@ -240,6 +339,8 @@ function Projects() {
                 ))
 
             }
+
+
 
 
 

@@ -29,8 +29,8 @@ function Sidebar(){
             </NavLink>
 
 
-            <NavLink to="/ideas">
-                💡 Ideas
+            <NavLink to="/Projects">
+                🚀 Projects
             </NavLink>
 
 

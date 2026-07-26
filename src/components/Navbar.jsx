@@ -57,8 +57,8 @@ function Navbar() {
                     Generator
                 </Link>
 
-                <Link to="/ideas">
-                    Ideas
+                <Link to="/Projects">
+                    Projects
                 </Link>
 
                 <Link to="/errors">
