@@ -51,87 +51,130 @@ function Home() {
 
 
 
-    return (
+   return (
 
-        <div className="home">
+    <div className="home">
+
+        <section className="hero">
+
+            <h1>
+                🚀 CodePilot AI
+            </h1>
+
+            <p>
+                The Ultimate AI Assistant for Developers
+            </p>
+
+            <div className="hero-buttons">
+
+                <Link to="/explain">
+                    <button>📝 Explain Code</button>
+                </Link>
+
+                <Link to="/generator">
+                    <button>⚡ Generate Code</button>
+                </Link>
+
+            </div>
+
+        </section>
 
 
-            <section className="hero">
+        {/* ===== NEW STATS SECTION ===== */}
 
-                <h1>
-                    🚀 CodePilot AI
-                </h1>
+        <section className="stats-section">
 
-                <p>
-                    The Ultimate AI Assistant for Developers
-                </p>
+            <h2>📊 CodePilot AI Stats</h2>
 
-                <div className="hero-buttons">
+            <div className="stats-grid">
 
-                    <Link to="/explain">
-                        <button>📝 Explain Code</button>
-                    </Link>
-
-                    <Link to="/generator">
-                        <button>⚡ Generate Code</button>
-                    </Link>
-
+                <div className="stat-card">
+                    <h3>6+</h3>
+                    <p>AI Tools</p>
                 </div>
 
-            </section>
-
-
-
-            <section className="tools-section">
-
-                <h2>
-                    Developer Tools
-                </h2>
-
-                <div className="tools-grid">
-
-                    {
-
-                        tools.map((tool, index) => (
-
-                            <Link
-                                key={index}
-                                to={tool.path}
-                                className="tool-card"
-                            >
-
-                                <div className="tool-icon">
-                                    {tool.icon}
-                                </div>
-
-
-                                <h3>
-                                    {tool.title}
-                                </h3>
-
-
-                                <p>
-                                    {tool.description}
-                                </p>
-
-
-                                <span>
-                                    Open Tool →
-                                </span>
-
-                            </Link>
-
-                        ))
-
-                    }
-
+                <div className="stat-card">
+                    <h3>5+</h3>
+                    <p>Programming Languages</p>
                 </div>
 
-            </section>
+                <div className="stat-card">
+                    <h3>2</h3>
+                    <p>Live Projects</p>
+                </div>
 
-        </div>
+                <div className="stat-card">
+                    <h3>100%</h3>
+                    <p>AI Powered</p>
+                </div>
 
-    );
+            </div>
+
+        </section>
+
+
+        <section className="features-strip">
+
+            <div>⚡ Fast AI Responses</div>
+
+            <div>🔒 Secure</div>
+
+            <div>🤖 Powered by Groq AI</div>
+
+            <div>⚛ Built with React</div>
+
+        </section>
+
+
+        {/* ===== DEVELOPER TOOLS ===== */}
+
+        <section className="tools-section">
+
+            <h2>
+                Developer Tools
+            </h2>
+
+            <div className="tools-grid">
+
+                {
+
+                    tools.map((tool, index) => (
+
+                        <Link
+                            key={index}
+                            to={tool.path}
+                            className="tool-card"
+                        >
+
+                            <div className="tool-icon">
+                                {tool.icon}
+                            </div>
+
+                            <h3>
+                                {tool.title}
+                            </h3>
+
+                            <p>
+                                {tool.description}
+                            </p>
+
+                            <span>
+                                Open Tool →
+                            </span>
+
+                        </Link>
+
+                    ))
+
+                }
+
+            </div>
+
+        </section>
+
+    </div>
+
+);
 
 }
 
