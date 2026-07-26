@@ -27,7 +27,25 @@ export async function askAI(question) {
 
 
 
+        // Check server response
+
+        if (!response.ok) {
+
+            throw new Error("AI server error");
+
+        }
+
+
+
         const data = await response.json();
+
+
+
+        if (!data.answer) {
+
+            return "🤖 AI could not generate a response. Please try again.";
+
+        }
 
 
 
@@ -38,7 +56,10 @@ export async function askAI(question) {
     } catch(error) {
 
 
-        return "❌ Server connection error. Please try again.";
+        console.log("AI Error:", error);
+
+
+        return "❌ Unable to connect with AI service. Please check your internet and try again.";
 
 
     }
