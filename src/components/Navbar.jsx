@@ -1,23 +1,32 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import searchData from "../data/searchData";
+
 import "../styles/Navbar.css";
 
-function Navbar() {
 
-    const [search, setSearch] = useState("");
+function Navbar(){
+
+
+    const [search,setSearch] = useState("");
 
     const navigate = useNavigate();
 
 
-    const results = searchData.filter((item) =>
 
-        item.title.toLowerCase().includes(search.toLowerCase())
+    const results = searchData.filter((item)=>
+
+        item.title
+        .toLowerCase()
+        .includes(search.toLowerCase())
 
     );
 
 
-    function openPage(path) {
+
+
+    function openPage(path){
 
         navigate(path);
 
@@ -26,131 +35,157 @@ function Navbar() {
     }
 
 
-    return (
+
+
+    return(
+
 
         <nav className="navbar">
 
+
+
             <Link
-                to="/"
-                className="logo"
+            to="/"
+            className="logo"
             >
+
                 🚀 CodePilot AI
+
             </Link>
+
+
 
 
 
             <div className="nav-links">
 
-                <Link to="/">
-                    Home
-                </Link>
 
-                <Link to="/explain">
-                    Explain
-                </Link>
+                <NavLink to="/">
+                    🏠 Home
+                </NavLink>
 
-                <Link to="/debugger">
-                    Debugger
-                </Link>
 
-                <Link to="/generator">
-                    Generator
-                </Link>
+                <NavLink to="/explain">
+                    📝 Explain
+                </NavLink>
 
-                <Link to="/Projects">
-                    Projects
-                </Link>
 
-                <Link to="/errors">
-                    Errors
-                </Link>
+                <NavLink to="/debugger">
+                    🐞 Debugger
+                </NavLink>
 
-                <Link to="/learning">
-                    Learning
-                </Link>
 
-                <Link to="/history">
-                    History
-                </Link>
+                <NavLink to="/generator">
+                    ⚡ Generator
+                </NavLink>
 
-                <Link to="/dashboard">
-                    Dashboard
-                </Link>
+
+                <NavLink to="/Projects">
+                    🚀 Projects
+                </NavLink>
+
+
+                <NavLink to="/learning">
+                    📚 Learning
+                </NavLink>
+
+
+                <NavLink to="/history">
+                    📜 History
+                </NavLink>
+
+
+                <NavLink to="/dashboard">
+                    📊 Dashboard
+                </NavLink>
+
+
 
             </div>
+
+
 
 
 
             <div className="search-box">
 
+
                 <input
 
-                    type="text"
+                placeholder="🔍 Search tools..."
 
-                    placeholder="🔍 Search tools..."
+                value={search}
 
-                    value={search}
-
-                    onChange={(e) => setSearch(e.target.value)}
+                onChange={(e)=>
+                    setSearch(e.target.value)
+                }
 
                 />
 
 
 
+
+
                 {
+                    search &&
 
-                    search !== "" &&
+                    <div className="search-results">
 
-                    (
 
-                        <div className="search-results">
+                        {
 
-                            {
+                        results.length > 0 ?
 
-                                results.length > 0
+                        results.map((item,index)=>(
 
-                                    ?
+                            <div
 
-                                    results.map((item, index) => (
+                            key={index}
 
-                                        <div
+                            className="search-item"
 
-                                            key={index}
-
-                                            className="search-item"
-
-                                            onClick={() => openPage(item.path)}
-
-                                        >
-
-                                            {item.title}
-
-                                        </div>
-
-                                    ))
-
-                                    :
-
-                                    <div className="search-item">
-
-                                        ❌ No Results Found
-
-                                    </div>
-
+                            onClick={()=>
+                                openPage(item.path)
                             }
+
+                            >
+
+                                {item.title}
+
+                            </div>
+
+
+                        ))
+
+                        :
+
+                        <div className="search-item">
+
+                            ❌ No Results
 
                         </div>
 
-                    )
+
+                        }
+
+
+                    </div>
+
 
                 }
 
+
+
             </div>
 
+
+
         </nav>
+
 
     )
 
 }
+
 
 export default Navbar;
