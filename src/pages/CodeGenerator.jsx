@@ -11,7 +11,6 @@ import "../styles/Page.css";
 
 function CodeGenerator() {
 
-
     const [idea, setIdea] = useState("");
 
     const [code, setCode] = useState("");
@@ -22,32 +21,57 @@ function CodeGenerator() {
 
     async function generateCode() {
 
-
         if (idea.trim() === "") {
+
+            alert("⚠ Please enter a project idea first.");
 
             return;
 
         }
 
-
         setLoading(true);
 
+        try {
 
-        const response = await askAI(idea);
+            const prompt = `
+Generate clean, readable and beginner-friendly code for this idea:
 
+${idea}
 
-        setCode(response);
+Include explanation and comments where necessary.
+            `;
 
+            const response = (await askAI(prompt)).trim();
 
-        saveHistory(
-            "Code Generator",
-            idea,
-            response
-        );
+            setCode(response);
 
+            if (response) {
 
-        setLoading(false);
+                saveHistory(
+                    "Code Generator",
+                    idea,
+                    response
+                );
 
+            }
+
+        }
+
+        catch (err) {
+
+            setCode(
+                "❌ Failed to generate code. Please try again."
+            );
+
+            console.log(err);
+
+        }
+
+        finally {
+
+            setLoading(false);
+
+        }
 
     }
 
@@ -67,31 +91,26 @@ function CodeGenerator() {
 
         <div className="page">
 
-
             <h1>
                 ⚡ AI Code Generator
             </h1>
 
-
             <p>
-                Describe your idea and generate code with AI.
+                Describe your idea and let AI generate clean code for you.
             </p>
-
 
 
             <div className="card">
 
-
                 <textarea
 
-                    placeholder="Example: Create a React login page..."
+                    placeholder="Example: Create a React weather app with search functionality"
 
                     value={idea}
 
                     onChange={(e) => setIdea(e.target.value)}
 
                 ></textarea>
-
 
 
                 <button
@@ -102,10 +121,9 @@ function CodeGenerator() {
 
                 >
 
-                    Generate Code 🚀
+                    ⚡ Generate with AI
 
                 </button>
-
 
 
                 <button
@@ -120,9 +138,7 @@ function CodeGenerator() {
 
                 </button>
 
-
             </div>
-
 
 
             {
@@ -130,7 +146,6 @@ function CodeGenerator() {
                 loading && <Loading />
 
             }
-
 
 
             {
@@ -147,11 +162,9 @@ function CodeGenerator() {
 
             }
 
-
-
         </div>
 
-    )
+    );
 
 }
 
