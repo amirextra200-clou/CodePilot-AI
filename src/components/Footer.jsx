@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "../styles/Footer.css";
 
 
@@ -8,49 +10,101 @@ function Footer(){
         <footer className="footer">
 
 
-            <div className="footer-content">
+            <div className="footer-container">
 
 
-                <h2>
-                    🚀 CodePilot AI
-                </h2>
+
+                <div className="footer-brand">
 
 
-                <p>
-                    Your AI Assistant for Programming.
-                    Build, Learn and Debug Code Easily.
-                </p>
+                    <h2>
+                        🚀 CodePilot AI
+                    </h2>
+
+
+                    <p>
+                        Your AI Assistant for Programming.
+                        Build, Learn and Debug Code Easily.
+                    </p>
+
+
+                </div>
+
+
+
+
+
+                <div className="footer-links">
+
+
+                    <h3>
+                        Quick Links
+                    </h3>
+
+
+                    <Link to="/explain">
+                        📝 Explain Code
+                    </Link>
+
+
+                    <Link to="/debugger">
+                        🐞 Debugger
+                    </Link>
+
+
+                    <Link to="/generator">
+                        ⚡ Code Generator
+                    </Link>
+
+
+                    <Link to="/learning">
+                        📚 Learning
+                    </Link>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div className="footer-tech">
+
+
+                    <h3>
+                        Built With
+                    </h3>
+
+
+                    <p>
+                        ⚛ React
+                    </p>
+
+
+                    <p>
+                        🟨 JavaScript
+                    </p>
+
+
+                    <p>
+                        🤖 Groq AI
+                    </p>
+
+
+                    <p>
+                        ▲ Vercel
+                    </p>
+
+
+                </div>
 
 
 
             </div>
 
 
-
-            <div className="footer-links">
-
-
-                <h3>
-                    Quick Links
-                </h3>
-
-
-                <p>
-                    📝 Explain Code
-                </p>
-
-
-                <p>
-                    🐞 Debugger
-                </p>
-
-
-                <p>
-                    ⚡ Code Generator
-                </p>
-
-
-            </div>
 
 
 
@@ -67,6 +121,7 @@ function Footer(){
 
 
         </footer>
+
 
     )
 
