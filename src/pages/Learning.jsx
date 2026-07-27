@@ -6,36 +6,89 @@ function Learning(){
 
     const courses = [
 
+
         {
             title:"🌐 HTML",
-            description:"Learn website structure and elements."
+
+            description:
+            "Learn website structure, tags and semantic HTML.",
+
+            link:
+            "https://developer.mozilla.org/en-US/docs/Web/HTML",
+
+            platform:
+            "MDN Web Docs"
         },
+
+
 
         {
             title:"🎨 CSS",
-            description:"Learn styling and design."
+
+            description:
+            "Learn styling, layouts, Flexbox, Grid and responsive design.",
+
+            link:
+            "https://developer.mozilla.org/en-US/docs/Web/CSS",
+
+            platform:
+            "MDN Web Docs"
         },
+
+
 
         {
             title:"⚡ JavaScript",
-            description:"Learn programming logic and interactivity."
+
+            description:
+            "Learn programming logic, DOM and interactive websites.",
+
+            link:
+            "https://javascript.info/",
+
+            platform:
+            "JavaScript.info"
         },
+
+
 
         {
             title:"⚛ React",
-            description:"Learn modern frontend development."
+
+            description:
+            "Learn modern frontend development with components and hooks.",
+
+            link:
+            "https://react.dev/learn",
+
+            platform:
+            "React Official Docs"
         },
+
+
 
         {
             title:"🐘 PHP",
-            description:"Learn backend development basics."
+
+            description:
+            "Learn backend development, forms and server-side programming.",
+
+            link:
+            "https://www.php.net/manual/en/",
+
+            platform:
+            "PHP Official Docs"
         }
+
 
     ];
 
 
 
+
+
     return(
+
 
         <div className="page">
 
@@ -45,9 +98,12 @@ function Learning(){
             </h1>
 
 
+
             <p>
-                Learn programming concepts step by step.
+                Learn programming from trusted resources and improve your skills.
             </p>
+
+
 
 
 
@@ -56,25 +112,63 @@ function Learning(){
                 courses.map((course,index)=>(
 
 
-                    <div className="card" key={index}>
+                    <div 
+                    className="card" 
+                    key={index}
+                    >
+
 
 
                         <h2>
+
                             {course.title}
+
                         </h2>
 
 
+
+
+
                         <p>
+
                             {course.description}
+
                         </p>
 
 
 
-                        <button>
 
-                            Start Learning 🚀
+                        <h4>
 
-                        </button>
+                            📖 Resource: {course.platform}
+
+                        </h4>
+
+
+
+
+
+                        <a
+
+                        href={course.link}
+
+                        target="_blank"
+
+                        rel="noreferrer"
+
+                        >
+
+                            <button>
+
+                                Start Learning 🚀
+
+                            </button>
+
+
+                        </a>
+
+
+
 
 
                     </div>
@@ -87,6 +181,7 @@ function Learning(){
 
 
         </div>
+
 
     )
 
