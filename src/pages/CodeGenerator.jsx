@@ -9,108 +9,255 @@ import Loading from "../components/Loading";
 import "../styles/Page.css";
 
 
-function CodeGenerator() {
-
-    const [idea, setIdea] = useState("");
-
-    const [code, setCode] = useState("");
-
-    const [loading, setLoading] = useState(false);
+function CodeGenerator(){
 
 
+    const [idea,setIdea] = useState("");
 
-    async function generateCode() {
+    const [language,setLanguage] = useState("JavaScript");
 
-        if (idea.trim() === "") {
+    const [code,setCode] = useState("");
 
-            alert("⚠ Please enter a project idea first.");
+    const [loading,setLoading] = useState(false);
+
+    const [error,setError] = useState("");
+
+
+
+
+
+    async function generateCode(){
+
+
+        if(idea.trim()===""){
+
+
+            setError(
+                "⚠️ Please enter your project idea first."
+            );
+
 
             return;
 
         }
 
+
+
+        setError("");
+
         setLoading(true);
 
-        try {
+
+
+
+        try{
+
 
             const prompt = `
-Generate clean, readable and beginner-friendly code for this idea:
+
+You are an expert ${language} developer.
+
+Generate clean, beginner-friendly and production-ready code.
+
+Project Idea:
 
 ${idea}
 
-Include explanation and comments where necessary.
+
+Requirements:
+
+1. Give complete code.
+2. Add useful comments.
+3. Explain important parts.
+4. Follow best practices.
+
+Language:
+${language}
+
             `;
 
-            const response = (await askAI(prompt)).trim();
+
+
+
+            const response = await askAI(prompt);
+
+
 
             setCode(response);
 
-            if (response) {
+
+
+
+            if(response){
+
 
                 saveHistory(
+
                     "Code Generator",
-                    idea,
+
+                    `${language}: ${idea}`,
+
                     response
+
                 );
+
 
             }
 
+
+
+
         }
 
-        catch (err) {
+        catch(error){
+
 
             setCode(
-                "❌ Failed to generate code. Please try again."
+                "❌ Failed to generate code. Try again."
             );
 
-            console.log(err);
+
+            console.log(error);
+
 
         }
 
-        finally {
+
+        finally{
+
 
             setLoading(false);
 
+
         }
+
 
     }
 
 
 
-    function clearAll() {
+
+
+    function clearAll(){
+
 
         setIdea("");
 
         setCode("");
 
+        setError("");
+
+
     }
 
 
 
-    return (
+
+
+    return(
+
 
         <div className="page">
+
+
 
             <h1>
                 ⚡ AI Code Generator
             </h1>
 
+
+
             <p>
-                Describe your idea and let AI generate clean code for you.
+                Describe your idea and generate code with AI.
             </p>
+
+
 
 
             <div className="card">
 
+
+
+
+
+                <select
+
+                    value={language}
+
+                    onChange={(e)=>setLanguage(e.target.value)}
+
+                >
+
+
+                    <option>
+                        JavaScript
+                    </option>
+
+
+                    <option>
+                        Python
+                    </option>
+
+
+                    <option>
+                        React
+                    </option>
+
+
+                    <option>
+                        PHP
+                    </option>
+
+
+                    <option>
+                        HTML/CSS
+                    </option>
+
+
+                </select>
+
+
+
+
+
+
+
                 <textarea
 
-                    placeholder="Example: Create a React weather app with search functionality"
+
+                    placeholder=
+                    "Example: Create a weather app with API integration"
+
 
                     value={idea}
 
-                    onChange={(e) => setIdea(e.target.value)}
 
-                ></textarea>
+                    onChange={(e)=>setIdea(e.target.value)}
+
+
+                />
+
+
+
+
+
+
+                {
+
+                    error &&
+
+                    <p style={{color:"red"}}>
+
+                        {error}
+
+                    </p>
+
+                }
+
+
+
+
+
 
 
                 <button
@@ -121,9 +268,27 @@ Include explanation and comments where necessary.
 
                 >
 
-                    ⚡ Generate with AI
+
+                    {
+
+                        loading
+
+                        ?
+
+                        "🤖 Generating..."
+
+                        :
+
+                        "⚡ Generate Code"
+
+                    }
+
 
                 </button>
+
+
+
+
 
 
                 <button
@@ -138,19 +303,33 @@ Include explanation and comments where necessary.
 
                 </button>
 
+
+
+
+
             </div>
+
+
+
+
 
 
             {
 
-                loading && <Loading />
+                loading && <Loading/>
 
             }
+
+
+
+
+
 
 
             {
 
                 code && !loading &&
+
 
                 <AIResponse
 
@@ -160,13 +339,21 @@ Include explanation and comments where necessary.
 
                 />
 
+
             }
+
+
+
+
 
         </div>
 
-    );
+
+    )
+
 
 }
+
 
 
 export default CodeGenerator;
