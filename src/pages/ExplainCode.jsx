@@ -18,6 +18,9 @@ function ExplainCode() {
 
     const [loading, setLoading] = useState(false);
 
+    const [error, setError] = useState("");
+
+
 
 
     async function explainCode() {
@@ -25,25 +28,49 @@ function ExplainCode() {
 
         if (code.trim() === "") {
 
+            setError("⚠️ Please paste your code first.");
+
             return;
 
         }
 
 
+        setError("");
+
         setLoading(true);
 
 
-        const response = await askAI(code);
+
+        const response = await askAI(
+
+            `Explain this code step by step.
+Tell me:
+1. What this code does
+2. How it works
+3. Any improvements
+
+Code:
+
+${code}`
+
+        );
+
 
 
         setAnswer(response);
 
 
+
         saveHistory(
+
             "Code Explanation",
+
             code,
+
             response
+
         );
+
 
 
         setLoading(false);
@@ -53,44 +80,82 @@ function ExplainCode() {
 
 
 
+
+
     function clearAll() {
+
 
         setCode("");
 
         setAnswer("");
 
+        setError("");
+
+
     }
+
+
 
 
 
     return (
 
+
         <div className="page">
 
 
             <h1>
-                📝 Code Explain
+                📝 AI Code Explain
             </h1>
 
 
+
             <p>
-                Paste your code and understand it easily with AI.
+                Paste your programming code and understand it with AI.
             </p>
+
 
 
 
             <div className="card">
 
 
+
                 <textarea
 
-                    placeholder="Paste your code here..."
+
+                    placeholder=
+
+                    "Example:function hello(){ console.log('Hello World');}Paste your code here..."
+
 
                     value={code}
 
+
                     onChange={(e) => setCode(e.target.value)}
 
-                ></textarea>
+
+                />
+
+
+
+
+
+                {
+
+                    error &&
+
+                    <p style={{ color: "red" }}>
+
+                        {error}
+
+                    </p>
+
+                }
+
+
+
+
 
 
 
@@ -102,9 +167,27 @@ function ExplainCode() {
 
                 >
 
-                    Explain Code 🚀
+
+                    {
+
+                        loading
+
+                            ?
+
+                            "🤖 Explaining..."
+
+                            :
+
+                            "📝 Explain Code 🚀"
+
+                    }
+
 
                 </button>
+
+
+
+
 
 
 
@@ -121,7 +204,11 @@ function ExplainCode() {
                 </button>
 
 
+
+
             </div>
+
+
 
 
 
@@ -133,9 +220,13 @@ function ExplainCode() {
 
 
 
+
+
+
             {
 
                 answer && !loading &&
+
 
                 <AIResponse
 
@@ -145,10 +236,14 @@ function ExplainCode() {
 
                 />
 
+
             }
 
 
+
+
         </div>
+
 
     )
 
