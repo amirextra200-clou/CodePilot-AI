@@ -73,6 +73,10 @@ function Navbar() {
                     History
                 </Link>
 
+                <Link to="/dashboard">
+                    Dashboard
+                </Link>
+
             </div>
 
 

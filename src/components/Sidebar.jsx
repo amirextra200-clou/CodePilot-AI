@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 import "../styles/Sidebar.css";
 
 
-function Sidebar(){
+function Sidebar() {
 
-    return(
+    return (
 
         <aside className="sidebar">
 
@@ -63,6 +63,10 @@ function Sidebar(){
 
             <NavLink to="/learning">
                 🐘 PHP
+            </NavLink>
+
+            <NavLink to="/dashboard">
+                📊 Dashboard
             </NavLink>
 
 
