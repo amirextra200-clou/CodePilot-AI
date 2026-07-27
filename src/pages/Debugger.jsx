@@ -11,7 +11,6 @@ import "../styles/Page.css";
 
 function Debugger() {
 
-
     const [error, setError] = useState("");
 
     const [solution, setSolution] = useState("");
@@ -22,32 +21,49 @@ function Debugger() {
 
     async function fixError() {
 
-
         if (error.trim() === "") {
+
+            alert("⚠ Please enter an error message first.");
 
             return;
 
         }
 
-
         setLoading(true);
 
+        try {
 
-        const response = await askAI(error);
+            const response = (await askAI(error)).trim();
 
+            setSolution(response);
 
-        setSolution(response);
+            if (response) {
 
+                saveHistory(
+                    "Debugger",
+                    error,
+                    response
+                );
 
-        saveHistory(
-            "Debugger",
-            error,
-            response
-        );
+            }
 
+        }
 
-        setLoading(false);
+        catch (err) {
 
+            setSolution(
+                "❌ Something went wrong while fixing your error. Please try again."
+            );
+
+            console.log(err);
+
+        }
+
+        finally {
+
+            setLoading(false);
+
+        }
 
     }
 
@@ -67,20 +83,16 @@ function Debugger() {
 
         <div className="page">
 
-
             <h1>
                 🐞 AI Debugger
             </h1>
 
-
             <p>
-                Paste your error and find the solution with AI.
+                Paste your error and let AI explain the problem and suggest a solution.
             </p>
 
 
-
             <div className="card">
-
 
                 <textarea
 
@@ -93,7 +105,6 @@ function Debugger() {
                 ></textarea>
 
 
-
                 <button
 
                     onClick={fixError}
@@ -102,10 +113,9 @@ function Debugger() {
 
                 >
 
-                    Fix Error 🚀
+                    🔍 Debug with AI
 
                 </button>
-
 
 
                 <button
@@ -120,9 +130,7 @@ function Debugger() {
 
                 </button>
 
-
             </div>
-
 
 
             {
@@ -130,7 +138,6 @@ function Debugger() {
                 loading && <Loading />
 
             }
-
 
 
             {
@@ -147,11 +154,9 @@ function Debugger() {
 
             }
 
-
-
         </div>
 
-    )
+    );
 
 }
 
