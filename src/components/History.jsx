@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 
 import ReactMarkdown from "react-markdown";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import {
     getHistory,
     clearHistory
@@ -12,6 +16,7 @@ import "../styles/History.css";
 
 function History(){
 
+
     const [history,setHistory] = useState([]);
 
     const [copied,setCopied] = useState(null);
@@ -20,9 +25,21 @@ function History(){
 
     useEffect(()=>{
 
-        setHistory(getHistory());
+        loadHistory();
 
     },[]);
+
+
+
+    function loadHistory(){
+
+        const data = getHistory();
+
+        setHistory(data);
+
+    }
+
+
 
 
 
@@ -37,40 +54,79 @@ function History(){
 
 
 
+
+
     function deleteOne(index){
 
+
         const updated = history.filter(
+
             (_,i)=> i !== index
+
         );
+
 
 
         localStorage.setItem(
+
             "codepilot_history",
+
             JSON.stringify(updated)
+
         );
+
 
 
         setHistory(updated);
 
+
     }
+
+
+
 
 
 
 
     async function copyText(text,index){
 
-        await navigator.clipboard.writeText(text);
 
-        setCopied(index);
+        try{
 
 
-        setTimeout(()=>{
+            await navigator.clipboard.writeText(text);
 
-            setCopied(null);
 
-        },2000);
+            setCopied(index);
+
+
+
+            setTimeout(()=>{
+
+
+                setCopied(null);
+
+
+            },2000);
+
+
+
+        }
+
+
+        catch(error){
+
+            console.log(
+                "Copy Error:",
+                error
+            );
+
+        }
+
 
     }
+
+
 
 
 
@@ -78,33 +134,48 @@ function History(){
 
     return(
 
+
         <div className="history-container">
 
 
+
             <div className="history-header">
+
 
                 <h2>
                     📜 AI History
                 </h2>
 
 
+
+
                 {
 
                     history.length > 0 &&
 
+
                     <button
+
                     className="clear-btn"
+
                     onClick={clearAll}
+
                     >
 
                         🗑 Clear All
 
+
                     </button>
+
 
                 }
 
 
+
             </div>
+
+
+
 
 
 
@@ -113,19 +184,25 @@ function History(){
 
                 history.length === 0 ?
 
+
                 (
 
+
                     <div className="empty-history">
+
 
                         <h3>
                             📭 No History Found
                         </h3>
 
+
                         <p>
-                            Your AI questions and answers will appear here.
+                            Ask AI questions and your conversations will appear here.
                         </p>
 
+
                     </div>
+
 
                 )
 
@@ -133,21 +210,34 @@ function History(){
                 :
 
 
+
                 history.map((item,index)=>(
 
 
+
                     <div
+
                     className="history-card"
+
                     key={index}
+
                     >
+
+
+
+
 
 
                         <div className="history-top">
 
 
                             <h3>
+
                                 {item.type}
+
                             </h3>
+
+
 
 
                             <button
@@ -160,10 +250,16 @@ function History(){
 
                                 ❌
 
+
                             </button>
 
 
+
                         </div>
+
+
+
+
 
 
 
@@ -171,15 +267,50 @@ function History(){
 
                         <div className="history-input">
 
+
                             <h4>
                                 📝 Question
                             </h4>
 
+
+
                             <p>
+
                                 {item.input}
+
                             </p>
 
+
+
+                            <button
+
+                            onClick={()=>copyText(item.input,index+"q")}
+
+                            >
+
+                            {
+
+                            copied === index+"q"
+
+                            ?
+
+                            "✅ Copied"
+
+                            :
+
+                            "📋 Copy Question"
+
+                            }
+
+
+                            </button>
+
+
+
                         </div>
+
+
+
 
 
 
@@ -188,16 +319,135 @@ function History(){
 
                         <div className="history-output">
 
+
                             <h4>
                                 🤖 AI Answer
                             </h4>
 
 
-                            <ReactMarkdown>
+
+
+
+
+                            <ReactMarkdown
+
+
+                            components={{
+
+
+
+                                code({
+
+                                    inline,
+
+                                    className,
+
+                                    children,
+
+                                    ...props
+
+                                }){
+
+
+
+                                    const match =
+
+                                    /language-(\w+)/.exec(
+
+                                        className || ""
+
+                                    );
+
+
+
+
+
+                                    if(!inline && match){
+
+
+                                        return(
+
+
+
+                                            <SyntaxHighlighter
+
+
+                                            style={oneDark}
+
+
+                                            language={match[1]}
+
+
+                                            PreTag="div"
+
+
+                                            >
+
+
+
+                                            {
+
+
+                                            String(children)
+
+                                            .replace(/\n$/,"")
+
+                                            }
+
+
+
+                                            </SyntaxHighlighter>
+
+
+
+                                        );
+
+
+                                    }
+
+
+
+
+
+                                    return(
+
+
+                                        <code
+
+                                        className="inline-code"
+
+                                        {...props}
+
+                                        >
+
+                                            {children}
+
+
+                                        </code>
+
+
+                                    );
+
+
+
+                                }
+
+
+
+                            }}
+
+
+                            >
+
+
 
                                 {item.output}
 
+
+
                             </ReactMarkdown>
+
+
 
 
                         </div>
@@ -206,30 +456,48 @@ function History(){
 
 
 
+
+
+
+
                         <div className="history-footer">
 
 
+
                             <button
+
 
                             onClick={()=>copyText(item.output,index)}
 
                             >
 
+
                             {
-                                copied === index
 
-                                ?
 
-                                "✅ Copied"
+                            copied === index
 
-                                :
 
-                                "📋 Copy Answer"
+                            ?
+
+
+                            "✅ Copied"
+
+
+                            :
+
+
+                            "📋 Copy Answer"
+
 
                             }
 
 
+
                             </button>
+
+
+
 
 
                             <small>
@@ -239,14 +507,21 @@ function History(){
                             </small>
 
 
+
                         </div>
+
+
 
 
 
                     </div>
 
 
+
+
                 ))
+
+
 
             }
 
@@ -254,7 +529,10 @@ function History(){
 
         </div>
 
+
+
     )
+
 
 }
 
