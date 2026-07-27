@@ -2,90 +2,73 @@ import { useState, useEffect } from "react";
 
 import ReactMarkdown from "react-markdown";
 
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-
-import { getHistory, clearHistory } from "../services/history";
+import {
+    getHistory,
+    clearHistory
+} from "../services/history";
 
 import "../styles/History.css";
 
 
+function History(){
 
-function History() {
+    const [history,setHistory] = useState([]);
 
-
-    const [history, setHistory] = useState([]);
-
-
-
-    const [copied, setCopied] = useState(null);
+    const [copied,setCopied] = useState(null);
 
 
 
+    useEffect(()=>{
 
-    useEffect(() => {
+        setHistory(getHistory());
 
-
-        loadHistory();
-
-
-    }, []);
+    },[]);
 
 
 
-
-    function loadHistory(){
-
-
-        const data = getHistory();
-
-
-        setHistory(data);
-
-
-    }
-
-
-
-
-
-    function deleteHistory(){
-
+    function clearAll(){
 
         clearHistory();
 
-
         setHistory([]);
-
 
     }
 
 
+
+
+    function deleteOne(index){
+
+        const updated = history.filter(
+            (_,i)=> i !== index
+        );
+
+
+        localStorage.setItem(
+            "codepilot_history",
+            JSON.stringify(updated)
+        );
+
+
+        setHistory(updated);
+
+    }
 
 
 
 
     async function copyText(text,index){
 
-
         await navigator.clipboard.writeText(text);
-
 
         setCopied(index);
 
 
-
         setTimeout(()=>{
-
 
             setCopied(null);
 
-
-
         },2000);
-
-
 
     }
 
@@ -93,283 +76,177 @@ function History() {
 
 
 
-    return (
+    return(
+
+        <div className="history-container">
 
 
-        <div className="card">
+            <div className="history-header">
+
+                <h2>
+                    📜 AI History
+                </h2>
 
 
+                {
 
-            <h2>
-                📜 AI History
-            </h2>
+                    history.length > 0 &&
+
+                    <button
+                    className="clear-btn"
+                    onClick={clearAll}
+                    >
+
+                        🗑 Clear All
+
+                    </button>
+
+                }
+
+
+            </div>
 
 
 
 
             {
 
-                history.length === 0
+                history.length === 0 ?
 
+                (
 
-                ?
+                    <div className="empty-history">
 
+                        <h3>
+                            📭 No History Found
+                        </h3>
 
-                <p>
-                    No history yet.
-                </p>
+                        <p>
+                            Your AI questions and answers will appear here.
+                        </p>
+
+                    </div>
+
+                )
 
 
                 :
 
 
-                <>
+                history.map((item,index)=>(
 
 
-
-                    <button onClick={deleteHistory}>
-
-                        🗑 Clear History
-
-                    </button>
+                    <div
+                    className="history-card"
+                    key={index}
+                    >
 
 
+                        <div className="history-top">
 
 
-
-                    {
-
-
-                        history.map((item,index)=>(
+                            <h3>
+                                {item.type}
+                            </h3>
 
 
+                            <button
 
-                            <div
+                            className="delete-btn"
 
-                                key={index}
-
-                                className="history-item"
+                            onClick={()=>deleteOne(index)}
 
                             >
 
+                                ❌
 
+                            </button>
 
-                                <h3>
 
-                                    {item.type}
+                        </div>
 
-                                </h3>
 
 
 
 
+                        <div className="history-input">
 
-                                <p>
+                            <h4>
+                                📝 Question
+                            </h4>
 
-                                    <b>
-                                        Input:
-                                    </b>
+                            <p>
+                                {item.input}
+                            </p>
 
-                                </p>
+                        </div>
 
 
 
 
-                                <p>
 
-                                    {item.input}
 
-                                </p>
+                        <div className="history-output">
 
+                            <h4>
+                                🤖 AI Answer
+                            </h4>
 
 
+                            <ReactMarkdown>
 
+                                {item.output}
 
+                            </ReactMarkdown>
 
-                                <p>
 
-                                    <b>
-                                        AI Output:
-                                    </b>
+                        </div>
 
-                                </p>
 
 
 
 
+                        <div className="history-footer">
 
 
-                                <ReactMarkdown
+                            <button
 
+                            onClick={()=>copyText(item.output,index)}
 
+                            >
 
-                                    components={{
+                            {
+                                copied === index
 
+                                ?
 
+                                "✅ Copied"
 
-                                        code({inline,className,children,...props}){
+                                :
 
+                                "📋 Copy Answer"
 
+                            }
 
-                                            const match =
-                                            /language-(\w+)/.exec(className || "");
 
+                            </button>
 
 
+                            <small>
 
+                                🕒 {item.date}
 
-                                            return !inline && match ? (
+                            </small>
 
 
+                        </div>
 
-                                                <SyntaxHighlighter
 
 
-                                                    style={oneDark}
+                    </div>
 
 
-                                                    language={match[1]}
-
-
-                                                    PreTag="div"
-
-
-
-                                                >
-
-
-
-                                                    {
-
-                                                        String(children)
-                                                        .replace(/\n$/,"")
-
-                                                    }
-
-
-
-                                                </SyntaxHighlighter>
-
-
-
-                                            )
-
-
-
-                                            :
-
-
-
-                                            (
-
-
-
-                                                <code
-
-                                                    className="inline-code"
-
-                                                    {...props}
-
-                                                >
-
-                                                    {children}
-
-
-                                                </code>
-
-
-
-                                            );
-
-
-
-                                        }
-
-
-
-                                    }}
-
-
-
-                                >
-
-
-                                    {item.output}
-
-
-
-                                </ReactMarkdown>
-
-
-
-
-
-
-
-                                <button
-
-
-                                    onClick={()=>copyText(item.output,index)}
-
-
-
-                                >
-
-
-
-                                    {
-
-
-                                        copied === index
-
-
-                                        ?
-
-
-                                        "✅ Copied"
-
-
-                                        :
-
-
-                                        "📋 Copy Output"
-
-
-
-                                    }
-
-
-
-                                </button>
-
-
-
-
-
-
-                                <small>
-
-                                    {item.date}
-
-                                </small>
-
-
-
-
-                            </div>
-
-
-
-                        ))
-
-
-                    }
-
-
-
-                </>
-
-
+                ))
 
             }
 
@@ -377,12 +254,9 @@ function History() {
 
         </div>
 
-
     )
 
-
 }
-
 
 
 export default History;
