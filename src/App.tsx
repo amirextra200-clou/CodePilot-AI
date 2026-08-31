@@ -16,115 +16,67 @@ import Dashboard from "./pages/Dashboard";
 
 import "./styles/Layout.css";
 
-
 function App() {
-
     return (
-
         <BrowserRouter>
-
             <Navbar />
 
-
             <div className="main-layout">
-
-
-                <Sidebar>
-
-
-                </Sidebar>
-
+                <Sidebar />
 
                 <main>
-
-
                     <Routes>
-
-
                         <Route
                             path="/"
                             element={<Home />}
                         />
-
 
                         <Route
                             path="/explain"
                             element={<ExplainCode />}
                         />
 
-
                         <Route
                             path="/debugger"
                             element={<Debugger />}
                         />
-
 
                         <Route
                             path="/generator"
                             element={<CodeGenerator />}
                         />
 
-
                         <Route
                             path="/learning"
                             element={<Learning />}
                         />
-
 
                         <Route
                             path="/Projects"
                             element={<Projects />}
                         />
 
-
                         <Route
                             path="/errors"
                             element={<Errors />}
                         />
-
-
 
                         <Route
                             path="/dashboard"
                             element={<Dashboard />}
                         />
 
-
-
                         <Route
                             path="/history"
                             element={<HistoryPage />}
                         />
-
-
                     </Routes>
 
-
                     <Footer />
-
-
                 </main>
-
-
             </div>
-
-
         </BrowserRouter>
-
-    )
-
+    );
 }
 
-
 export default App;
-
-
-
-
-
-
-
-
-
-
-

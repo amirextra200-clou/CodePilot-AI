@@ -1,53 +1,24 @@
 import Groq from "groq-sdk";
-
-
 export default async function handler(req, res) {
-
-
     if (req.method !== "POST") {
-
         return res.status(405).json({
             message: "Method not allowed"
         });
-
     }
-
-
     try {
-
-
         const { question } = req.body;
-
-
         if (!question) {
-
             return res.status(400).json({
-
                 answer: "Please enter a question."
-
             });
-
         }
-
-
-
         const groq = new Groq({
-
             apiKey: process.env.GROQ_API_KEY
-
         });
-
-
-
         const response = await groq.chat.completions.create({
-
-
             messages: [
-
                 {
-
                     role: "system",
-
                     content:
                     `
 You are CodePilot AI, a friendly AI teacher for students.
@@ -83,57 +54,23 @@ For study topics:
 Always encourage learning.
 Do not only provide the final answer; help the student understand.
 `
-
                 },
-
-
                 {
-
                     role: "user",
-
                     content: question
-
                 }
-
             ],
-
-
-            model: "llama-3.1-8b-instant",
-
-
+           model: "openai/gpt-oss-20b",
             max_tokens: 800
-
-
         });
-
-
-
         const answer = response.choices[0].message.content;
-
-
-
         res.status(200).json({
-
             answer: answer
-
         });
-
-
-
     } catch(error) {
-
-
         console.log(error);
-
-
         res.status(500).json({
-
             answer: "❌ AI Error: " + error.message
-
         });
-
-
     }
-
-
 }

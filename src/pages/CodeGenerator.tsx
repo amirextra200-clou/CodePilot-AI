@@ -9,38 +9,36 @@ import Loading from "../components/Loading";
 import "../styles/Page.css";
 
 
-function CodeGenerator(){
+function CodeGenerator() {
 
 
-    const [idea,setIdea] = useState("");
+    const [idea, setIdea] = useState<string>("");
 
-    const [language,setLanguage] = useState("JavaScript");
+    const [language, setLanguage] =
+        useState<string>("JavaScript");
 
-    const [code,setCode] = useState("");
+    const [code, setCode] =
+        useState<string>("");
 
-    const [loading,setLoading] = useState(false);
+    const [loading, setLoading] =
+        useState<boolean>(false);
 
-    const [error,setError] = useState("");
-
-
-
-
-
-    async function generateCode(){
+    const [error, setError] =
+        useState<string>("");
 
 
-        if(idea.trim()===""){
+    async function generateCode(): Promise<void> {
 
+
+        if (idea.trim() === "") {
 
             setError(
                 "⚠️ Please enter your project idea first."
             );
 
-
             return;
 
         }
-
 
 
         setError("");
@@ -48,9 +46,7 @@ function CodeGenerator(){
         setLoading(true);
 
 
-
-
-        try{
+        try {
 
 
             const prompt = `
@@ -77,69 +73,41 @@ ${language}
             `;
 
 
-
-
             const response = await askAI(prompt);
-
 
 
             setCode(response);
 
 
-
-
-            if(response){
-
+            if (response) {
 
                 saveHistory(
-
                     "Code Generator",
-
                     `${language}: ${idea}`,
-
                     response
-
                 );
-
 
             }
 
 
-
-
-        }
-
-        catch(error){
-
+        } catch (error: unknown) {
 
             setCode(
                 "❌ Failed to generate code. Try again."
             );
 
-
             console.log(error);
 
-
-        }
-
-
-        finally{
-
+        } finally {
 
             setLoading(false);
 
-
         }
-
 
     }
 
 
-
-
-
-    function clearAll(){
-
+    function clearAll(): void {
 
         setIdea("");
 
@@ -147,18 +115,12 @@ ${language}
 
         setError("");
 
-
     }
 
 
-
-
-
-    return(
-
+    return (
 
         <div className="page">
-
 
 
             <h1>
@@ -166,98 +128,71 @@ ${language}
             </h1>
 
 
-
             <p>
                 Describe your idea and generate code with AI.
             </p>
 
 
-
-
             <div className="card">
-
-
-
 
 
                 <select
 
                     value={language}
 
-                    onChange={(e)=>setLanguage(e.target.value)}
+                    onChange={(e) =>
+                        setLanguage(e.target.value)
+                    }
 
                 >
-
 
                     <option>
                         JavaScript
                     </option>
 
-
                     <option>
                         Python
                     </option>
-
 
                     <option>
                         React
                     </option>
 
-
                     <option>
                         PHP
                     </option>
-
 
                     <option>
                         HTML/CSS
                     </option>
 
-
                 </select>
-
-
-
-
-
 
 
                 <textarea
 
-
-                    placeholder=
-                    "Example: Create a weather app with API integration"
-
+                    placeholder="Example: Create a weather app with API integration"
 
                     value={idea}
 
-
-                    onChange={(e)=>setIdea(e.target.value)}
-
+                    onChange={(e) =>
+                        setIdea(e.target.value)
+                    }
 
                 />
-
-
-
-
 
 
                 {
 
                     error &&
 
-                    <p style={{color:"red"}}>
+                    <p style={{ color: "red" }}>
 
                         {error}
 
                     </p>
 
                 }
-
-
-
-
-
 
 
                 <button
@@ -268,27 +203,17 @@ ${language}
 
                 >
 
-
                     {
 
                         loading
 
-                        ?
+                            ? "🤖 Generating..."
 
-                        "🤖 Generating..."
-
-                        :
-
-                        "⚡ Generate Code"
+                            : "⚡ Generate Code"
 
                     }
 
-
                 </button>
-
-
-
-
 
 
                 <button
@@ -304,32 +229,19 @@ ${language}
                 </button>
 
 
-
-
-
             </div>
-
-
-
-
 
 
             {
 
-                loading && <Loading/>
+                loading && <Loading />
 
             }
-
-
-
-
-
 
 
             {
 
                 code && !loading &&
-
 
                 <AIResponse
 
@@ -339,21 +251,14 @@ ${language}
 
                 />
 
-
             }
-
-
-
 
 
         </div>
 
-
-    )
-
+    );
 
 }
-
 
 
 export default CodeGenerator;
