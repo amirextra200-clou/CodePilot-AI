@@ -61,7 +61,7 @@ Do not only provide the final answer; help the student understand.
                 }
             ],
            model: "openai/gpt-oss-20b",
-            max_tokens: 800
+            max_tokens: 4000
         });
         const answer = response.choices[0].message.content;
         res.status(200).json({

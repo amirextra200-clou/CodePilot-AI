@@ -82,7 +82,7 @@ Always prioritize the user's requested task.
                 },
             ],
 
-            max_tokens: 2000,
+            max_tokens: 4000,
         });
 
         const answer = response.choices?.[0]?.message?.content;
