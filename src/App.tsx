@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -17,12 +18,32 @@ import Dashboard from "./pages/Dashboard";
 import "./styles/Layout.css";
 
 function App() {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    function toggleSidebar() {
+        setSidebarOpen((prev) => !prev);
+    }
+
+    function closeSidebar() {
+        setSidebarOpen(false);
+    }
+
     return (
         <BrowserRouter>
-            <Navbar />
+            <Navbar onMenuClick={toggleSidebar} />
 
             <div className="main-layout">
-                <Sidebar />
+                <Sidebar
+                    isOpen={sidebarOpen}
+                    onClose={closeSidebar}
+                />
+
+                {sidebarOpen && (
+                    <div
+                        className="sidebar-overlay"
+                        onClick={closeSidebar}
+                    />
+                )}
 
                 <main>
                     <Routes>

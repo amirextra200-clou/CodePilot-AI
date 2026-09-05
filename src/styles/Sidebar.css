@@ -1,154 +1,190 @@
-.sidebar{
+.sidebar {
+    width: 250px;
+    min-height: calc(100vh - 70px);
 
-    width:250px;
+    background: #0f172a;
 
-    min-height:calc(100vh - 70px);
+    padding: 25px 20px;
 
-    background:#0f172a;
+    display: flex;
+    flex-direction: column;
 
-    padding:25px 20px;
+    border-right: 1px solid #1e293b;
 
-    display:flex;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
 
-    flex-direction:column;
+    flex-shrink: 0;
 
-    border-right:1px solid #1e293b;
-
-    box-shadow:4px 0 15px rgba(0,0,0,.08);
-
+    z-index: 1000;
 }
 
-.sidebar h2{
+/* Sidebar header */
 
-    color:white;
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    font-size:22px;
+    border-bottom: 1px solid #334155;
 
-    margin-bottom:20px;
-
-    letter-spacing:.5px;
-
-    border-bottom:1px solid #334155;
-
-    padding-bottom:10px;
-
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
+.sidebar h2 {
+    color: white;
 
-.learning-title{
+    font-size: 22px;
 
-    margin-top:35px;
+    margin: 0;
 
+    letter-spacing: 0.5px;
 }
 
+/* Close button */
 
-.sidebar a{
+.sidebar-close {
+    display: none;
 
-    color:#cbd5e1;
+    background: transparent;
 
-    text-decoration:none;
+    border: none;
 
-    padding:14px 16px;
+    color: white;
 
-    border-radius:12px;
+    font-size: 22px;
 
-    margin-bottom:10px;
-
-    font-weight:600;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    transition:all .3s ease;
-
+    cursor: pointer;
 }
 
+/* Headings */
 
-.sidebar a:hover{
+.sidebar h3 {
+    color: #38bdf8;
 
-    background:#2563eb;
+    font-size: 18px;
 
-    color:white;
-
-    transform:translateX(8px);
-
-    box-shadow:0 8px 20px rgba(37,99,235,.35);
-
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
+.sidebar h3.learning-title {
+    margin-top: 35px;
+}
 
-@media(max-width:900px){
+/* Links */
 
-    .sidebar{
+.sidebar a {
+    color: #cbd5e1;
 
-        width:220px;
+    text-decoration: none;
 
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    margin-bottom: 10px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    background: #2563eb;
+
+    color: white;
+
+    transform: translateX(8px);
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.sidebar a.active {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+
+    border-left: 4px solid #38bdf8;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 220px;
+    }
+}
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+
+        top: 70px;
+        left: 0;
+
+        width: 280px;
+
+        height: calc(100vh - 70px);
+
+        min-height: 0;
+
+        overflow-y: auto;
+
+        padding: 20px;
+
+        transform: translateX(-100%);
+
+        transition: transform 0.3s ease;
+
+        box-shadow: 8px 0 30px rgba(0, 0, 0, 0.3);
     }
 
-}
-
-
-@media(max-width:768px){
-
-    .sidebar{
-
-        width:100%;
-
-        min-height:auto;
-
-        border-right:none;
-
-        border-bottom:1px solid #1e293b;
-
-        padding:15px;
-
+    .sidebar.sidebar-open {
+        transform: translateX(0);
     }
 
-    .sidebar h2{
+    .sidebar-header {
+        position: sticky;
 
-        text-align:center;
+        top: 0;
 
+        background: #0f172a;
+
+        z-index: 2;
     }
 
-    .sidebar a{
-
-        margin-bottom:6px;
-
+    .sidebar-close {
+        display: block;
     }
 
-}
+    .sidebar h2 {
+        font-size: 20px;
+    }
 
-.sidebar a.active{
+    .sidebar a {
+        padding: 13px 14px;
 
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
+        margin-bottom: 7px;
+    }
 
-    color:white;
-
-    box-shadow:0 8px 20px rgba(37,99,235,.35);
-
-    border-left:4px solid #38bdf8;
-
-}
-
-
-.sidebar h3{
-
-    color:#38bdf8;
-
-    font-size:18px;
-
-    margin-top:25px;
-
-    margin-bottom:15px;
-
-}
-
-
-.sidebar h3.learning-title{
-
-    margin-top:35px;
-
+    .sidebar a:hover {
+        transform: none;
+    }
 }

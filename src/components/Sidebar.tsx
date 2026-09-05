@@ -1,41 +1,78 @@
 import { NavLink } from "react-router-dom";
 import "../styles/Sidebar.css";
-function Sidebar() {
+
+interface SidebarProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+function Sidebar({ isOpen, onClose }: SidebarProps) {
     return (
-        <aside className="sidebar">
-            <h2>
-                🚀 CodePilot AI
-            </h2>
+        <aside
+            className={`sidebar ${
+                isOpen ? "sidebar-open" : ""
+            }`}
+        >
+            <div className="sidebar-header">
+                <h2>🚀 CodePilot AI</h2>
 
-            <h3>
-                🛠 Developer Tools
-            </h3>
+                <button
+                    className="sidebar-close"
+                    onClick={onClose}
+                    aria-label="Close menu"
+                >
+                    ✕
+                </button>
+            </div>
 
-            <NavLink to="/dashboard">
+            <h3>🛠 Developer Tools</h3>
+
+            <NavLink
+                to="/dashboard"
+                onClick={onClose}
+            >
                 📊 Dashboard
             </NavLink>
 
-            <NavLink to="/explain">
+            <NavLink
+                to="/explain"
+                onClick={onClose}
+            >
                 📝 Code Explain
             </NavLink>
 
-            <NavLink to="/debugger">
+            <NavLink
+                to="/debugger"
+                onClick={onClose}
+            >
                 🐞 Debugger
             </NavLink>
 
-            <NavLink to="/generator">
+            <NavLink
+                to="/generator"
+                onClick={onClose}
+            >
                 ⚡ Code Generator
             </NavLink>
 
-            <NavLink to="/Projects">
+            <NavLink
+                to="/Projects"
+                onClick={onClose}
+            >
                 🚀 Projects
             </NavLink>
 
-            <NavLink to="/errors">
+            <NavLink
+                to="/errors"
+                onClick={onClose}
+            >
                 ❌ Errors
             </NavLink>
 
-            <NavLink to="/history">
+            <NavLink
+                to="/history"
+                onClick={onClose}
+            >
                 📜 History
             </NavLink>
 
@@ -43,18 +80,28 @@ function Sidebar() {
                 📚 Learning
             </h3>
 
-            <NavLink to="/learning">
+            <NavLink
+                to="/learning"
+                onClick={onClose}
+            >
                 🌐 HTML / CSS / JavaScript
             </NavLink>
 
-            <NavLink to="/learning">
+            <NavLink
+                to="/learning"
+                onClick={onClose}
+            >
                 ⚛ React
             </NavLink>
 
-            <NavLink to="/learning">
+            <NavLink
+                to="/learning"
+                onClick={onClose}
+            >
                 🐘 PHP
             </NavLink>
         </aside>
     );
 }
+
 export default Sidebar;
